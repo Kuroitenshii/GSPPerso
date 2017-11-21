@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class Connect {
     private static Connection connect;
-    private static String url = "jdbc:mysql/localhost/gsbPerso";
+    private static String url = "jdbc:mysql://localhost/gsbPerso";
     private static String user = "root";
     private static String mdp = "root";
     

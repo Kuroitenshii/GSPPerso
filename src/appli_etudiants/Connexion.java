@@ -36,6 +36,8 @@ public class Connexion extends javax.swing.JDialog {
         this.setModal(true);
         //on stocke dans this.fenetre la référence vers la fenetre parente
         this.fenetre=(InterfaceGraphique)parent;
+        this.jTextFieldIdentifiant.setText("toto");
+        this.jPassMDP.setText("0");
     }
 
     /**
@@ -157,7 +159,7 @@ public class Connexion extends javax.swing.JDialog {
                 // ici on appelle md5 membre static de la classe outils
                 mdp=Outils.md5(mdp);
             
-                ResultSet lignesRetournees=requete.executeQuery("select * from employe where identifiant='"+identifiant+"' and mot_de_passe='"+mdp+"'");
+                ResultSet lignesRetournees=requete.executeQuery("select * from utilisateurs where identifiant='"+identifiant+"' and mot_de_passe='"+mdp+"'");
                 if (lignesRetournees.next()){
                     // récupération des données de la personne qui se connecte
                     Integer id=lignesRetournees.getInt("id_utilisateur");
@@ -169,8 +171,8 @@ public class Connexion extends javax.swing.JDialog {
                     String ville = lignesRetournees.getString("adresse_ville");
                     String embauche = lignesRetournees.getString("date_embauche");
                     String role = lignesRetournees.getString("role");
-                    String position = lignesRetournees.getString("id_categorie");
-                    String naissance = lignesRetournees.getString("naissance");
+                    String position = lignesRetournees.getString("categorie");
+                    String naissance = lignesRetournees.getString("annee_naissance");
                     Integer tel1 = lignesRetournees.getInt("tel_personnel");
                     Integer tel2 = lignesRetournees.getInt("tel_professionnel");
                     

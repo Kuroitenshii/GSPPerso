@@ -52,11 +52,11 @@ public class InterfaceGraphique extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         desktopPane = new javax.swing.JDesktopPane();
+        jButtonMesInfos = new javax.swing.JButton();
         nomMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         connexionMenuItem = new javax.swing.JMenuItem();
         deconnexionMenuItem = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         SortieMenuItem = new javax.swing.JMenuItem();
         aideMenu = new javax.swing.JMenu();
         aproposMenuItem = new javax.swing.JMenuItem();
@@ -66,7 +66,18 @@ public class InterfaceGraphique extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        desktopPane.setBackground(new java.awt.Color(204, 204, 204));
         desktopPane.setBorder(new javax.swing.border.MatteBorder(null));
+
+        jButtonMesInfos.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonMesInfos.setText("Mes Infos");
+        jButtonMesInfos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMesInfosActionPerformed(evt);
+            }
+        });
+        desktopPane.add(jButtonMesInfos);
+        jButtonMesInfos.setBounds(140, 10, 150, 30);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("Employé");
@@ -90,15 +101,6 @@ public class InterfaceGraphique extends javax.swing.JFrame {
             }
         });
         fileMenu.add(deconnexionMenuItem);
-
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setText("MesInfos");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        fileMenu.add(jMenuItem2);
 
         SortieMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         SortieMenuItem.setMnemonic('x');
@@ -129,11 +131,11 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(desktopPane)
+            .add(desktopPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(desktopPane)
+            .add(desktopPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
         );
 
         pack();
@@ -162,10 +164,10 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         this.fenDeconnexion.setVisible(true);
     }//GEN-LAST:event_deconnexionMenuItemActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        fenMesInfos =new MesInfos(this, true);
+    private void jButtonMesInfosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMesInfosActionPerformed
+        fenMesInfos =new MesInfos(this, true,info);
         this.fenMesInfos.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jButtonMesInfosActionPerformed
     public void connecte(String nom, String prenom, Personne gens){
         //maj de l'etat de la connexion
         this.connecte=true;
@@ -183,6 +185,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     public void majConnexion(){
         deconnexionMenuItem.setEnabled(this.connecte);
         connexionMenuItem.setEnabled(!this.connecte);
+        jButtonMesInfos.setVisible(this.connecte);
     }
     
     /**
@@ -227,8 +230,8 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     private javax.swing.JMenuItem deconnexionMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JButton jButtonMesInfos;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuBar nomMenuBar;
     private javax.swing.JMenu nomjMenu;
     // End of variables declaration//GEN-END:variables
