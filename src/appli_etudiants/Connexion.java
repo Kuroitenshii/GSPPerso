@@ -149,8 +149,6 @@ public class Connexion extends javax.swing.JDialog {
                 //connexion a la base
                 Connection maConnexion = (Connection) Connect.getConnect();
                 
-                //requete
-                Statement requete=maConnexion.createStatement();
                 String identifiant=jTextFieldIdentifiant.getText();
                 String mdp=jPassMDP.getText();
                 
@@ -159,7 +157,7 @@ public class Connexion extends javax.swing.JDialog {
                 // ici on appelle md5 membre static de la classe outils
                 mdp=Outils.md5(mdp);
             
-                ResultSet lignesRetournees=requete.executeQuery("select * from utilisateurs where identifiant='"+identifiant+"' and mot_de_passe='"+mdp+"'");
+                ResultSet lignesRetournees=Connect.requete("select * from utilisateurs where identifiant='"+identifiant+"' and mot_de_passe='"+mdp+"'");
                 if (lignesRetournees.next()){
                     // récupération des données de la personne qui se connecte
                     Integer id=lignesRetournees.getInt("id_utilisateur");
@@ -180,13 +178,13 @@ public class Connexion extends javax.swing.JDialog {
                     //Modifications de la Mission 2 à placer ici
                     //initialisation de la classe personne avec els données récupérer celon le role
                     if(role.equals("employe")){
-                    Personne actuel = new Employe(id,nom,prenom,courriel,rue,cp,ville,embauche,role,position,naissance,tel1,tel2); 
+                    Personne actuel = new Employe(id,nom,prenom,courriel,embauche,rue,cp,ville,role,position,naissance,tel1,tel2); 
                     this.fenetre.connecte(nom, prenom, actuel);
                     } else if(role.equals("responsable")){
-                        Personne actuel = new Responsable(id,nom,prenom,courriel,rue,cp,ville,embauche,role,position,naissance,tel1,tel2);
+                        Personne actuel = new Responsable(id,nom,prenom,courriel,embauche,rue,cp,ville,role,position,naissance,tel1,tel2);
                         this.fenetre.connecte(nom, prenom, actuel);
                     } else if(role.equals("directeur")){
-                        Personne actuel = new Directeur(id,nom,prenom,courriel,rue,cp,ville,embauche,role,position,naissance,tel1,tel2);
+                        Personne actuel = new Directeur(id,nom,prenom,courriel,embauche,rue,cp,ville,role,position,naissance,tel1,tel2);
                         this.fenetre.connecte(nom, prenom, actuel);
                     }                    
                     this.setVisible(false);
