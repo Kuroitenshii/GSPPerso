@@ -9,17 +9,17 @@ package appli_etudiants;
  *
  * @author Kuroi-Tenshi
  */
-public class MenuHobbie extends javax.swing.JDialog {
+public class MenuInfo extends javax.swing.JDialog {
     private MenuCV fenetre;
     private Personne info;
-    private AddHobbie fenAdd;
-    private MesHobbie fenPerso;
+    private AddInfo fenAdd;
+    private MesInfo fenPerso;
 
     /**
      * Creates new form Menu_xp
      */
 
-    public MenuHobbie(java.awt.Dialog parent, boolean modal, Personne gens) {
+    public MenuInfo(java.awt.Dialog parent, boolean modal, Personne gens) {
         super(parent, modal);
         initComponents();
         //positionnement au milieu de la fenetre parente
@@ -43,25 +43,25 @@ public class MenuHobbie extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonAddHobbie = new javax.swing.JButton();
-        jButtonMyHobbie = new javax.swing.JButton();
+        jButtonAddInfo = new javax.swing.JButton();
+        jButtonMyInfo = new javax.swing.JButton();
         jButtonRetour = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButtonAddHobbie.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButtonAddHobbie.setText("Ajouter Hobbie");
-        jButtonAddHobbie.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAddInfo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonAddInfo.setText("Ajouter Informatique");
+        jButtonAddInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddHobbieActionPerformed(evt);
+                jButtonAddInfoActionPerformed(evt);
             }
         });
 
-        jButtonMyHobbie.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButtonMyHobbie.setText("Mes Hobbies");
-        jButtonMyHobbie.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMyInfo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonMyInfo.setText("Mes Informatique");
+        jButtonMyInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMyHobbieActionPerformed(evt);
+                jButtonMyInfoActionPerformed(evt);
             }
         });
 
@@ -80,18 +80,21 @@ public class MenuHobbie extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonRetour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonMyHobbie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonAddHobbie, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonAddInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonMyInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jButtonRetour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonAddHobbie, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonAddInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(jButtonMyHobbie, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonMyInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(jButtonRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
@@ -104,15 +107,15 @@ public class MenuHobbie extends javax.swing.JDialog {
         this.setVisible(false);
     }//GEN-LAST:event_jButtonRetourActionPerformed
 
-    private void jButtonAddHobbieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddHobbieActionPerformed
-        fenAdd = new AddHobbie(this,true, info);
+    private void jButtonAddInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddInfoActionPerformed
+        fenAdd = new AddInfo(this,true, info);
         this.fenAdd.setVisible(true);
-    }//GEN-LAST:event_jButtonAddHobbieActionPerformed
+    }//GEN-LAST:event_jButtonAddInfoActionPerformed
 
-    private void jButtonMyHobbieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMyHobbieActionPerformed
-        fenPerso = new MesHobbie(this,true, info);
+    private void jButtonMyInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMyInfoActionPerformed
+        fenPerso = new MesInfo(this,true, info);
         this.fenPerso.setVisible(true);
-    }//GEN-LAST:event_jButtonMyHobbieActionPerformed
+    }//GEN-LAST:event_jButtonMyInfoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,22 +134,14 @@ public class MenuHobbie extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuHobbie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuHobbie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuHobbie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuHobbie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -160,7 +155,7 @@ public class MenuHobbie extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                MenuHobbie dialog = new MenuHobbie(new javax.swing.JDialog(), true, null);
+                MenuInfo dialog = new MenuInfo(new javax.swing.JDialog(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -173,8 +168,8 @@ public class MenuHobbie extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAddHobbie;
-    private javax.swing.JButton jButtonMyHobbie;
+    private javax.swing.JButton jButtonAddInfo;
+    private javax.swing.JButton jButtonMyInfo;
     private javax.swing.JButton jButtonRetour;
     // End of variables declaration//GEN-END:variables
 }

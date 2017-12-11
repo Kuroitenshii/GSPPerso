@@ -76,6 +76,7 @@ public class MesXp extends javax.swing.JDialog {
         jButtonModifDate = new javax.swing.JButton();
         jButtonModifTitre = new javax.swing.JButton();
         jComboBoxPerso = new javax.swing.JComboBox<>();
+        jButtonSupprimer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ajout éxperience");
@@ -160,10 +161,19 @@ public class MesXp extends javax.swing.JDialog {
             }
         });
 
+        jComboBoxPerso.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jComboBoxPerso.setModel(new DefaultComboBoxModel());
         jComboBoxPerso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxPersoActionPerformed(evt);
+            }
+        });
+
+        jButtonSupprimer.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonSupprimer.setText("Supprimer");
+        jButtonSupprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSupprimerActionPerformed(evt);
             }
         });
 
@@ -175,12 +185,6 @@ public class MesXp extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(56, 56, 56))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonAjoutList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonValide, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -211,7 +215,18 @@ public class MesXp extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonModifTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonModifDate, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 76, Short.MAX_VALUE))
+                .addGap(0, 108, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(jButtonAjoutList, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jButtonValide, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jButtonSupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,9 +260,11 @@ public class MesXp extends javax.swing.JDialog {
                     .addComponent(jTextFieldActivite, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonAjoutList, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(jButtonValide, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonValide, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42))
         );
 
         pack();
@@ -337,6 +354,19 @@ public class MesXp extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jComboBoxPersoActionPerformed
 
+    private void jButtonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSupprimerActionPerformed
+        ResultSet res = Connect.requete("select * from cv_experience_prof where titre_experience_prof='" + jComboBoxPerso.getSelectedItem() + "' and id_utilisateur = " + info.getId());
+        try {
+            if (res.next()) {
+                Integer idp = res.getInt("id_experience_prof");
+                Connect.requete2("delete from cv_experience_prof where id_experience_prof="+idp);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MesXp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonSupprimerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -393,6 +423,7 @@ public class MesXp extends javax.swing.JDialog {
     private javax.swing.JButton jButtonModifDate;
     private javax.swing.JButton jButtonModifTitre;
     private javax.swing.JButton jButtonSupprList;
+    private javax.swing.JButton jButtonSupprimer;
     private javax.swing.JButton jButtonValide;
     private javax.swing.JButton jButtonViderList;
     private javax.swing.JComboBox<String> jComboBoxPerso;

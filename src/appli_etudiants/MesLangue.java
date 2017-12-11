@@ -16,13 +16,13 @@ import javax.swing.DefaultListModel;
  *
  * @author Kuroi-Tenshi
  */
-public class MesForm extends javax.swing.JDialog {
-    private MenuForm fenetre;
+public class MesLangue extends javax.swing.JDialog {
+    private MenuLangue fenetre;
     private Personne info;
     /**
      * Creates new form AddXP
      */
-    public MesForm(java.awt.Dialog parent, boolean modal, Personne gens) {
+    public MesLangue(java.awt.Dialog parent, boolean modal, Personne gens) {
         super(parent, modal);
         initComponents();
         //positionnement au milieu de la fenetre parente
@@ -31,16 +31,16 @@ public class MesForm extends javax.swing.JDialog {
         //sur la precedente fenêtre dans fermer connexion
         this.setModal(true);
         //on stocke dans this.fenetre la référence vers la fenetre parente
-        this.fenetre=(MenuForm)parent;
+        this.fenetre=(MenuLangue)parent;
         //initialisation données de la page et du paramettre info
         
         this.info = gens;
         Connect.getConnect();
         try {
-            ResultSet res = Connect.requete("Select * from cv_formation where id_utilisateur=" + info.getId());
+            ResultSet res = Connect.requete("Select * from cv_langue where id_utilisateur=" + info.getId());
             DefaultComboBoxModel box = (DefaultComboBoxModel) jComboBoxPerso.getModel();
             while (res.next()) {
-                box.addElement(res.getString("annee"));
+                box.addElement(res.getString("libelle_langue"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(MesXp.class.getName()).log(Level.SEVERE, null, ex);
@@ -57,13 +57,11 @@ public class MesForm extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldAnnee = new javax.swing.JTextField();
         jTextFieldTitre = new javax.swing.JTextField();
         jButtonValide = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldLieu = new javax.swing.JTextField();
+        jTextFieldNiveau = new javax.swing.JTextField();
         jComboBoxPerso = new javax.swing.JComboBox<>();
         jLabelId = new javax.swing.JLabel();
         jButtonSupprimer = new javax.swing.JButton();
@@ -73,17 +71,11 @@ public class MesForm extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Ajout Formation");
-
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Année :");
+        jLabel1.setText("Mes Langues");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Titre :");
-
-        jTextFieldAnnee.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
         jTextFieldTitre.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
@@ -97,9 +89,9 @@ public class MesForm extends javax.swing.JDialog {
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Lieu :");
+        jLabel4.setText("Niveau :");
 
-        jTextFieldLieu.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jTextFieldNiveau.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
         jComboBoxPerso.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jComboBoxPerso.setModel(new DefaultComboBoxModel());
@@ -110,6 +102,7 @@ public class MesForm extends javax.swing.JDialog {
         });
 
         jLabelId.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabelId.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelId.setEnabled(false);
 
         jButtonSupprimer.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -127,87 +120,75 @@ public class MesForm extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabelId, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldAnnee)
-                            .addComponent(jTextFieldTitre)
-                            .addComponent(jTextFieldLieu)
-                            .addComponent(jComboBoxPerso, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(56, 56, 56))
+                            .addComponent(jTextFieldTitre, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+                            .addComponent(jTextFieldNiveau)
+                            .addComponent(jComboBoxPerso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonValide, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                        .addComponent(jButtonSupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(jButtonValide, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonSupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jComboBoxPerso, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
+                    .addComponent(jLabelId, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldTitre, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldLieu, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
-                .addGap(43, 43, 43)
+                    .addComponent(jTextFieldNiveau, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonValide, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonSupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonValideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValideActionPerformed
-        Integer id = Integer.parseInt(jLabelId.getText());
-        String date = jTextFieldAnnee.getText();
+        Integer id = info.getId();
         String titre = jTextFieldTitre.getText();
-        String lieu = jTextFieldLieu.getText();
-        Connect.requete2("update cv_formation set annee='"+date+"', libelle_formation='"+titre+"', lieu='"+lieu+"' where id_formation="+id);
+        String descri = jTextFieldNiveau.getText();
+        Connect.requete2("update cv_langue set libelle_langue='"+titre+"', niveau='"+descri+"' where id_langue="+Integer.parseInt(jLabelId.getText()));
         this.setVisible(false);       
         
     }//GEN-LAST:event_jButtonValideActionPerformed
 
     private void jComboBoxPersoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPersoActionPerformed
         try {
-            ResultSet res = Connect.requete("Select * from cv_formation where annee='" + jComboBoxPerso.getSelectedItem() + "'");
+            ResultSet res = Connect.requete("Select * from cv_langue where libelle_langue='" + jComboBoxPerso.getSelectedItem() + "'");
             if (res.next()) {
-                jTextFieldAnnee.setText(res.getString("annee"));
-                jTextFieldTitre.setText(res.getString("libelle_formation"));
-                jTextFieldLieu.setText(res.getString("lieu"));
-                jLabelId.setText(res.getString("id_formation"));
+                jTextFieldTitre.setText(res.getString("libelle_langue"));
+                jTextFieldNiveau.setText(res.getString("niveau"));
+                jLabelId.setText(res.getString("id_langue"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(MesXp.class
-                    .getName()).log(Level.SEVERE, null, ex);
+                .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jComboBoxPersoActionPerformed
 
     private void jButtonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSupprimerActionPerformed
-        Connect.requete2("delete from cv_formation where id_formation="+Integer.parseInt(jLabelId.getText()));
+        Connect.requete2("delete from cv_langue where id_langue="+Integer.parseInt(jLabelId.getText()));
         this.setVisible(false);
     }//GEN-LAST:event_jButtonSupprimerActionPerformed
 
@@ -228,14 +209,26 @@ public class MesForm extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MesForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MesLangue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MesForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MesLangue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MesForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MesLangue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MesForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MesLangue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -244,7 +237,7 @@ public class MesForm extends javax.swing.JDialog {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                MesForm dialog = new MesForm(new javax.swing.JDialog(), true, null);
+                MesLangue dialog = new MesLangue(new javax.swing.JDialog(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -261,12 +254,10 @@ public class MesForm extends javax.swing.JDialog {
     private javax.swing.JButton jButtonValide;
     private javax.swing.JComboBox<String> jComboBoxPerso;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelId;
-    private javax.swing.JTextField jTextFieldAnnee;
-    private javax.swing.JTextField jTextFieldLieu;
+    private javax.swing.JTextField jTextFieldNiveau;
     private javax.swing.JTextField jTextFieldTitre;
     // End of variables declaration//GEN-END:variables
 }

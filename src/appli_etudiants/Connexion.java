@@ -147,7 +147,7 @@ public class Connexion extends javax.swing.JDialog {
             
             try {
                 //connexion a la base
-                Connection maConnexion = (Connection) Connect.getConnect();
+                Connect.getConnect();
                 
                 String identifiant=jTextFieldIdentifiant.getText();
                 String mdp=jPassMDP.getText();

@@ -9,17 +9,17 @@ package appli_etudiants;
  *
  * @author Kuroi-Tenshi
  */
-public class MenuHobbie extends javax.swing.JDialog {
+public class MenuLangue extends javax.swing.JDialog {
     private MenuCV fenetre;
     private Personne info;
-    private AddHobbie fenAdd;
-    private MesHobbie fenPerso;
+    private AddLangue fenAdd;
+    private MesLangue fenPerso;
 
     /**
      * Creates new form Menu_xp
      */
 
-    public MenuHobbie(java.awt.Dialog parent, boolean modal, Personne gens) {
+    public MenuLangue(java.awt.Dialog parent, boolean modal, Personne gens) {
         super(parent, modal);
         initComponents();
         //positionnement au milieu de la fenetre parente
@@ -43,25 +43,25 @@ public class MenuHobbie extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonAddHobbie = new javax.swing.JButton();
-        jButtonMyHobbie = new javax.swing.JButton();
+        jButtonAddLangue = new javax.swing.JButton();
+        jButtonMyLangue = new javax.swing.JButton();
         jButtonRetour = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButtonAddHobbie.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButtonAddHobbie.setText("Ajouter Hobbie");
-        jButtonAddHobbie.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAddLangue.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonAddLangue.setText("Ajouter Langue");
+        jButtonAddLangue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddHobbieActionPerformed(evt);
+                jButtonAddLangueActionPerformed(evt);
             }
         });
 
-        jButtonMyHobbie.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButtonMyHobbie.setText("Mes Hobbies");
-        jButtonMyHobbie.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMyLangue.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonMyLangue.setText("Mes Langue");
+        jButtonMyLangue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMyHobbieActionPerformed(evt);
+                jButtonMyLangueActionPerformed(evt);
             }
         });
 
@@ -81,17 +81,17 @@ public class MenuHobbie extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonRetour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonMyHobbie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonAddHobbie, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
+                    .addComponent(jButtonMyLangue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonAddLangue, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonAddHobbie, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonAddLangue, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(jButtonMyHobbie, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonMyLangue, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(jButtonRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
@@ -104,15 +104,15 @@ public class MenuHobbie extends javax.swing.JDialog {
         this.setVisible(false);
     }//GEN-LAST:event_jButtonRetourActionPerformed
 
-    private void jButtonAddHobbieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddHobbieActionPerformed
-        fenAdd = new AddHobbie(this,true, info);
+    private void jButtonAddLangueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddLangueActionPerformed
+        fenAdd = new AddLangue(this,true, info);
         this.fenAdd.setVisible(true);
-    }//GEN-LAST:event_jButtonAddHobbieActionPerformed
+    }//GEN-LAST:event_jButtonAddLangueActionPerformed
 
-    private void jButtonMyHobbieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMyHobbieActionPerformed
-        fenPerso = new MesHobbie(this,true, info);
+    private void jButtonMyLangueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMyLangueActionPerformed
+        fenPerso = new MesLangue(this,true, info);
         this.fenPerso.setVisible(true);
-    }//GEN-LAST:event_jButtonMyHobbieActionPerformed
+    }//GEN-LAST:event_jButtonMyLangueActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,22 +131,14 @@ public class MenuHobbie extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuHobbie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuLangue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuHobbie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuLangue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuHobbie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuLangue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuHobbie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuLangue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -160,7 +152,7 @@ public class MenuHobbie extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                MenuHobbie dialog = new MenuHobbie(new javax.swing.JDialog(), true, null);
+                MenuLangue dialog = new MenuLangue(new javax.swing.JDialog(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -173,8 +165,8 @@ public class MenuHobbie extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAddHobbie;
-    private javax.swing.JButton jButtonMyHobbie;
+    private javax.swing.JButton jButtonAddLangue;
+    private javax.swing.JButton jButtonMyLangue;
     private javax.swing.JButton jButtonRetour;
     // End of variables declaration//GEN-END:variables
 }

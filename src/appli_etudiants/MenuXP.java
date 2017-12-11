@@ -12,15 +12,14 @@ package appli_etudiants;
 public class MenuXP extends javax.swing.JDialog {
     private MenuCV fenetre;
     private Personne info;
+    private AddXP fenAdd;
+    private MesXp fenPerso;
 
     /**
      * Creates new form Menu_xp
      */
-    public MenuXP() {
-        initComponents();
-    }
 
-    MenuXP(java.awt.Dialog parent, boolean modal, Personne gens) {
+    public MenuXP(java.awt.Dialog parent, boolean modal, Personne gens) {
         super(parent, modal);
         initComponents();
         //positionnement au milieu de la fenetre parente
@@ -52,9 +51,19 @@ public class MenuXP extends javax.swing.JDialog {
 
         jButtonAddXP.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButtonAddXP.setText("Ajouter Experience");
+        jButtonAddXP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddXPActionPerformed(evt);
+            }
+        });
 
         jButtonMyXP.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButtonMyXP.setText("Mes Experience");
+        jButtonMyXP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMyXPActionPerformed(evt);
+            }
+        });
 
         jButtonRetour.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButtonRetour.setText("Retour");
@@ -98,6 +107,16 @@ public class MenuXP extends javax.swing.JDialog {
         this.setVisible(false);
     }//GEN-LAST:event_jButtonRetourActionPerformed
 
+    private void jButtonAddXPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddXPActionPerformed
+        fenAdd = new AddXP(this,true, info);
+        this.fenAdd.setVisible(true);
+    }//GEN-LAST:event_jButtonAddXPActionPerformed
+
+    private void jButtonMyXPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMyXPActionPerformed
+        fenPerso = new MesXp(this,true, info);
+        this.fenPerso.setVisible(true);
+    }//GEN-LAST:event_jButtonMyXPActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -128,6 +147,7 @@ public class MenuXP extends javax.swing.JDialog {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 MenuXP dialog = new MenuXP(new javax.swing.JDialog(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {

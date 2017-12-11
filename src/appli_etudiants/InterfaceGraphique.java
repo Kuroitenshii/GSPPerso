@@ -23,6 +23,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     private Connexion fenConnexion;
     private Deconnexion fenDeconnexion;
     private MesInfos fenMesInfos;
+    private MenuCV fenmenuCV;
 
     /**
      * constructeur : Creates new form InterfaceGraphique
@@ -53,6 +54,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         desktopPane = new javax.swing.JDesktopPane();
         jButtonMesInfos = new javax.swing.JButton();
+        jButtonMenuCV = new javax.swing.JButton();
         nomMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         connexionMenuItem = new javax.swing.JMenuItem();
@@ -78,6 +80,16 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         });
         desktopPane.add(jButtonMesInfos);
         jButtonMesInfos.setBounds(140, 10, 150, 30);
+
+        jButtonMenuCV.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonMenuCV.setText("Modifier mon CV");
+        jButtonMenuCV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMenuCVActionPerformed(evt);
+            }
+        });
+        desktopPane.add(jButtonMenuCV);
+        jButtonMenuCV.setBounds(120, 50, 200, 40);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("Employé");
@@ -168,6 +180,11 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         fenMesInfos =new MesInfos(this, true,info);
         this.fenMesInfos.setVisible(true);
     }//GEN-LAST:event_jButtonMesInfosActionPerformed
+
+    private void jButtonMenuCVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuCVActionPerformed
+        fenmenuCV =new MenuCV(this, true,info);
+        this.fenmenuCV.setVisible(true);
+    }//GEN-LAST:event_jButtonMenuCVActionPerformed
     public void connecte(String nom, String prenom, Personne gens){
         //maj de l'etat de la connexion
         this.connecte=true;
@@ -186,6 +203,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         deconnexionMenuItem.setEnabled(this.connecte);
         connexionMenuItem.setEnabled(!this.connecte);
         jButtonMesInfos.setVisible(this.connecte);
+        jButtonMenuCV.setVisible(this.connecte);
     }
     
     /**
@@ -230,6 +248,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     private javax.swing.JMenuItem deconnexionMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JButton jButtonMenuCV;
     private javax.swing.JButton jButtonMesInfos;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar nomMenuBar;

@@ -278,11 +278,11 @@ public class MesInfos extends javax.swing.JDialog {
                     .addComponent(jTextFieldCP, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCP, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextFieldVille, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonVille, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonVille, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -342,7 +342,16 @@ public class MesInfos extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonTel2ActionPerformed
 
     private void jButtonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValiderActionPerformed
+        Integer id = this.info.getId();
+        String adresse = jTextFieldAdresse.getText();
+        Integer cp = Integer.parseInt(jTextFieldCP.getText());
+        String ville = jTextFieldVille.getText();
+        String mail = jTextFieldMail.getText();
+        Integer tel1 = Integer.parseInt(jTextFieldTel1.getText());
+        Integer tel2 = Integer.parseInt(jTextFieldTel2.getText());
+        Connect.updateInfo(id, adresse, cp, ville, mail, tel1, tel2);
         
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonValiderActionPerformed
 
     /**

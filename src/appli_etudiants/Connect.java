@@ -10,8 +10,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -48,6 +50,7 @@ public class Connect {
     }
 
     public static void updateInfo(Integer id, String adresse, Integer cp, String ville, String mail, Integer tel1, Integer tel2) {
+        //mise a jour des information du client
         try {
             Statement requete = connect.createStatement();
             requete.executeUpdate("UPDATE utilisateurs SET adresse_rue='"+adresse+"', adresse_cp="+cp+", adresse_ville='"+ville+"', mail='"+mail+"', tel_personnel="+tel1+", tel_professionnel="+tel2+" WHERE id_utilisateur="+id);
@@ -55,4 +58,44 @@ public class Connect {
             Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static void updateTitre(Integer id, String titre){
+        //mise a jour du titre du cv
+        try {
+            Statement requete = connect.createStatement();
+            requete.executeUpdate("UPDATE cv_titre SET libelle_titre='"+titre+"' WHERE id_utilisateur="+id);
+        } catch (SQLException ex) {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void addXp(Integer id, String date, String titre, DefaultListModel liste){
+        //rajoute une experience professionnel a la base
+        try {
+            Statement requete = connect.createStatement();
+            requete.executeUpdate("INSERT INTO cv_experience_prof (id_utilisateur, date_experience_prof, titre_experience_prof) VALUES ("+id+", '"+date+"', '"+titre+"')");
+            ResultSet res = requete.executeQuery("select * from cv_experience_prof where titre_experience_prof='"+titre+"' and id_utilisateur = "+id);
+            if(res.next()){
+            Integer idp = res.getInt("id_experience_prof");
+             for(Integer i=0; i < liste.size(); i++){
+                //rajoute les activité lié a l'experience
+                String donnee = (String) liste.get(i);
+                requete.executeUpdate("INSERT INTO cv_activite VALUES ("+idp+", '"+donnee+"')");
+            }
+            }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void requete2(String req){
+        //fonction permettant d'executer une requete envoyé en paraméttre
+        try {
+            Statement requete = connect.createStatement();
+            requete.executeUpdate(req);
+        } catch (SQLException ex) {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
 }
