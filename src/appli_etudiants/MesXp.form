@@ -74,8 +74,8 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButtonViderList2" min="-2" pref="167" max="-2" attributes="0"/>
-                  <Component id="jButtonViderList1" min="-2" pref="167" max="-2" attributes="0"/>
+                  <Component id="jButtonModifTitre" min="-2" pref="167" max="-2" attributes="0"/>
+                  <Component id="jButtonModifDate" min="-2" pref="167" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="76" max="32767" attributes="0"/>
           </Group>
@@ -92,15 +92,15 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="jTextFieldDate" alignment="3" max="32767" attributes="0"/>
-                      <Component id="jButtonViderList1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonModifDate" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel2" min="-2" pref="34" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="jTextFieldTitre" alignment="3" pref="38" max="32767" attributes="0"/>
-                  <Component id="jButtonViderList2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldTitre" alignment="3" max="32767" attributes="0"/>
+                  <Component id="jButtonModifTitre" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -156,6 +156,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldDate">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="18" style="1"/>
         </Property>
@@ -163,6 +164,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldTitre">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="18" style="1"/>
         </Property>
@@ -259,7 +261,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonViderList1">
+    <Component class="javax.swing.JButton" name="jButtonModifDate">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="18" style="1"/>
@@ -267,10 +269,10 @@
         <Property name="text" type="java.lang.String" value="modifier"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonViderList1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonModifDateActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonViderList2">
+    <Component class="javax.swing.JButton" name="jButtonModifTitre">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="18" style="1"/>
@@ -278,7 +280,7 @@
         <Property name="text" type="java.lang.String" value="modifier"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonViderList2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonModifTitreActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBoxPerso">
@@ -287,6 +289,9 @@
           <Connection code="new DefaultComboBoxModel()" type="code"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxPersoActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>

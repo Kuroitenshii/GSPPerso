@@ -17,8 +17,10 @@ import javax.swing.DefaultListModel;
  * @author Kuroi-Tenshi
  */
 public class MesXp extends javax.swing.JDialog {
+
     private MenuXP fenetre;
     private Personne info;
+
     /**
      * Creates new form AddXP
      */
@@ -31,21 +33,21 @@ public class MesXp extends javax.swing.JDialog {
         //sur la precedente fenêtre dans fermer connexion
         this.setModal(true);
         //on stocke dans this.fenetre la référence vers la fenetre parente
-        this.fenetre=(MenuXP)parent;
+        this.fenetre = (MenuXP) parent;
         //initialisation données de la page et du paramettre info
-        
+
         this.info = gens;
-        Connect.getConnect();        
+        Connect.getConnect();
         try {
-            ResultSet res = Connect.requete("Select * from cv_experience_prof where id_utilisateur="+info.getId());
+            ResultSet res = Connect.requete("Select * from cv_experience_prof where id_utilisateur=" + info.getId());
             DefaultComboBoxModel box = (DefaultComboBoxModel) jComboBoxPerso.getModel();
-            while(res.next()){
+            while (res.next()) {
                 box.addElement(res.getString("titre_experience_prof"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(MesXp.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     /**
@@ -71,8 +73,8 @@ public class MesXp extends javax.swing.JDialog {
         jListActivite = new javax.swing.JList<>();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldActivite = new javax.swing.JTextField();
-        jButtonViderList1 = new javax.swing.JButton();
-        jButtonViderList2 = new javax.swing.JButton();
+        jButtonModifDate = new javax.swing.JButton();
+        jButtonModifTitre = new javax.swing.JButton();
         jComboBoxPerso = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -90,8 +92,10 @@ public class MesXp extends javax.swing.JDialog {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Titre :");
 
+        jTextFieldDate.setEditable(false);
         jTextFieldDate.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
+        jTextFieldTitre.setEditable(false);
         jTextFieldTitre.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
         jButtonValide.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -140,23 +144,28 @@ public class MesXp extends javax.swing.JDialog {
 
         jTextFieldActivite.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
-        jButtonViderList1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButtonViderList1.setText("modifier");
-        jButtonViderList1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonModifDate.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonModifDate.setText("modifier");
+        jButtonModifDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonViderList1ActionPerformed(evt);
+                jButtonModifDateActionPerformed(evt);
             }
         });
 
-        jButtonViderList2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButtonViderList2.setText("modifier");
-        jButtonViderList2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonModifTitre.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonModifTitre.setText("modifier");
+        jButtonModifTitre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonViderList2ActionPerformed(evt);
+                jButtonModifTitreActionPerformed(evt);
             }
         });
 
         jComboBoxPerso.setModel(new DefaultComboBoxModel());
+        jComboBoxPerso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxPersoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,8 +209,8 @@ public class MesXp extends javax.swing.JDialog {
                             .addComponent(jComboBoxPerso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonViderList2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonViderList1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonModifTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonModifDate, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -215,13 +224,13 @@ public class MesXp extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextFieldDate)
-                        .addComponent(jButtonViderList1))
+                        .addComponent(jButtonModifDate))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldTitre, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(jButtonViderList2))
+                    .addComponent(jTextFieldTitre)
+                    .addComponent(jButtonModifTitre))
                 .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,36 +257,85 @@ public class MesXp extends javax.swing.JDialog {
         Integer id = info.getId();
         String date = jTextFieldDate.getText();
         String titre = jTextFieldTitre.getText();
-        DefaultListModel liste = (DefaultListModel) jListActivite.getModel();        
         Connect.getConnect();
-        Connect.addXp(id, date, titre, liste);
-        this.setVisible(false);       
-        
+         ResultSet res = Connect.requete("select * from cv_experience_prof where titre_experience_prof='" + jComboBoxPerso.getSelectedItem() + "' and id_utilisateur = " + info.getId());
+        try {
+            if (res.next()) {
+                Integer idp = res.getInt("id_experience_prof");
+                Connect.requete2("update cv_experience_prof set date_experience_prof='"+date+"', titre_experience_prof='"+titre+"' where id_experience_prof="+idp);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MesXp.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+        this.setVisible(false);
+
     }//GEN-LAST:event_jButtonValideActionPerformed
 
     private void jButtonAjoutListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjoutListActionPerformed
         DefaultListModel liste = (DefaultListModel) jListActivite.getModel();
         liste.addElement(jTextFieldActivite.getText());
+        ResultSet res = Connect.requete("select * from cv_experience_prof where titre_experience_prof='" + jComboBoxPerso.getSelectedItem() + "' and id_utilisateur = " + info.getId());
+        try {
+            if (res.next()) {
+                Integer idp = res.getInt("id_experience_prof");
+                String donnee = jTextFieldActivite.getText();
+                Connect.requete2("INSERT INTO cv_activite VALUES (" + idp + ", '" + donnee + "')");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MesXp.class.getName()).log(Level.SEVERE, null, ex);
+        }
         jTextFieldActivite.setText("");
     }//GEN-LAST:event_jButtonAjoutListActionPerformed
 
     private void jButtonSupprListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSupprListActionPerformed
         DefaultListModel liste = (DefaultListModel) jListActivite.getModel();
+        String last = jListActivite.getSelectedValue();
         liste.remove(jListActivite.getSelectedIndex());
+        Connect.requete2("delete from cv_activite where activite='" + last + "'");
     }//GEN-LAST:event_jButtonSupprListActionPerformed
 
     private void jButtonViderListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViderListActionPerformed
         DefaultListModel liste = (DefaultListModel) jListActivite.getModel();
         liste.clear();
+        ResultSet res = Connect.requete("select * from cv_experience_prof where titre_experience_prof='" + jComboBoxPerso.getSelectedItem() + "' and id_utilisateur = " + info.getId());
+        try {
+            if (res.next()) {
+                Integer idp = res.getInt("id_experience_prof");
+                Connect.requete2("delete from cv_activite where id_experience_prof="+idp);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MesXp.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonViderListActionPerformed
 
-    private void jButtonViderList1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViderList1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonViderList1ActionPerformed
+    private void jButtonModifDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifDateActionPerformed
+        jTextFieldDate.setEditable(true);
+    }//GEN-LAST:event_jButtonModifDateActionPerformed
 
-    private void jButtonViderList2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViderList2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonViderList2ActionPerformed
+    private void jButtonModifTitreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifTitreActionPerformed
+        jTextFieldTitre.setEditable(true);
+    }//GEN-LAST:event_jButtonModifTitreActionPerformed
+
+    private void jComboBoxPersoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPersoActionPerformed
+        try {
+            ResultSet res = Connect.requete("Select * from cv_experience_prof where titre_experience_prof='" + jComboBoxPerso.getSelectedItem() + "'");
+            if (res.next()) {
+                jTextFieldDate.setText(res.getString("date_experience_prof"));
+                jTextFieldTitre.setText(res.getString("titre_experience_prof"));
+                Integer idxp = res.getInt("id_experience_prof");
+                ResultSet res2 = Connect.requete("Select * from cv_activite where id_experience_prof=" + idxp);
+                DefaultListModel liste = (DefaultListModel) jListActivite.getModel();
+                liste.clear();
+                while (res2.next()) {
+                    liste.addElement(res2.getString("activite"));
+
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MesXp.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jComboBoxPersoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,16 +351,24 @@ public class MesXp extends javax.swing.JDialog {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MesXp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MesXp.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MesXp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MesXp.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MesXp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MesXp.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MesXp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MesXp.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -324,11 +390,11 @@ public class MesXp extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAjoutList;
+    private javax.swing.JButton jButtonModifDate;
+    private javax.swing.JButton jButtonModifTitre;
     private javax.swing.JButton jButtonSupprList;
     private javax.swing.JButton jButtonValide;
     private javax.swing.JButton jButtonViderList;
-    private javax.swing.JButton jButtonViderList1;
-    private javax.swing.JButton jButtonViderList2;
     private javax.swing.JComboBox<String> jComboBoxPerso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
