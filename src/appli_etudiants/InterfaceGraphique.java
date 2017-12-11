@@ -11,12 +11,13 @@ import javax.swing.JOptionPane;
  * @author nc
  */
 public class InterfaceGraphique extends javax.swing.JFrame {
+
     /**
      * attribut qui indique si l'etudiant est connecté ou non
      */
     private boolean connecte;
     private Personne info;
-    
+
     /**
      * interface graphique
      */
@@ -24,22 +25,22 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     private Deconnexion fenDeconnexion;
     private MesInfos fenMesInfos;
     private MenuCV fenmenuCV;
+    private ChangePosition fenPos;
 
     /**
      * constructeur : Creates new form InterfaceGraphique
-     * 
+     *
      */
     public InterfaceGraphique() {
         initComponents();
         //par defaut, la connexion est inactive
-        this.connecte=false;
+        this.connecte = false;
         //element du menu de deconnexion grisé
         this.majConnexion();
         //centrage
         this.setLocationRelativeTo(null);
         //titre 
         this.setTitle("Gestion des étudiants du bts sio");
-
     }
 
     /**
@@ -54,6 +55,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         desktopPane = new javax.swing.JDesktopPane();
         jButtonMesInfos = new javax.swing.JButton();
+        jButtonMenuPosition = new javax.swing.JButton();
         jButtonMenuCV = new javax.swing.JButton();
         nomMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
@@ -80,6 +82,16 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         });
         desktopPane.add(jButtonMesInfos);
         jButtonMesInfos.setBounds(140, 10, 150, 30);
+
+        jButtonMenuPosition.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonMenuPosition.setText("Modifier Position");
+        jButtonMenuPosition.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMenuPositionActionPerformed(evt);
+            }
+        });
+        desktopPane.add(jButtonMenuPosition);
+        jButtonMenuPosition.setBounds(120, 100, 200, 40);
 
         jButtonMenuCV.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButtonMenuCV.setText("Modifier mon CV");
@@ -159,56 +171,69 @@ public class InterfaceGraphique extends javax.swing.JFrame {
 
     private void connexionMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connexionMenuItemActionPerformed
         // TODO add your handling code here:
-       
+
         /**
-         * création de la fenetre de connexion et attachement de cette dernière à l'interface
-         * maj de connecte en retour
-        */
-        this.fenConnexion=new Connexion(this, true);
+         * création de la fenetre de connexion et attachement de cette dernière
+         * à l'interface maj de connecte en retour
+         */
+        this.fenConnexion = new Connexion(this, true);
         this.fenConnexion.setVisible(true);
-        
+
         //JOptionPane.showMessageDialog(this, "cc");
     }//GEN-LAST:event_connexionMenuItemActionPerformed
 
     private void deconnexionMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deconnexionMenuItemActionPerformed
         // TODO add your handling code here:
-        fenDeconnexion=new Deconnexion(this, true);
+        fenDeconnexion = new Deconnexion(this, true);
         this.fenDeconnexion.setVisible(true);
     }//GEN-LAST:event_deconnexionMenuItemActionPerformed
 
     private void jButtonMesInfosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMesInfosActionPerformed
-        fenMesInfos =new MesInfos(this, true,info);
+        fenMesInfos = new MesInfos(this, true, info);
         this.fenMesInfos.setVisible(true);
     }//GEN-LAST:event_jButtonMesInfosActionPerformed
 
     private void jButtonMenuCVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuCVActionPerformed
-        fenmenuCV =new MenuCV(this, true,info);
+        fenmenuCV = new MenuCV(this, true, info);
         this.fenmenuCV.setVisible(true);
     }//GEN-LAST:event_jButtonMenuCVActionPerformed
-    public void connecte(String nom, String prenom, Personne gens){
+
+    private void jButtonMenuPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuPositionActionPerformed
+        fenPos = new ChangePosition(this, true, info);
+        this.fenPos.setVisible(true);
+    }//GEN-LAST:event_jButtonMenuPositionActionPerformed
+    public void connecte(String nom, String prenom, Personne gens) {
         //maj de l'etat de la connexion
-        this.connecte=true;
+        this.connecte = true;
         //ajout du nom dans la fenetre
-        this.nomjMenu.setText("Connecté en tant que : "+prenom+" "+nom);
+        this.nomjMenu.setText("Connecté en tant que : " + prenom + " " + nom);
         this.nomjMenu.setEnabled(false);
         this.info = gens;
-        
-        
+
     }
-    public void deconnecte(){
-        this.connecte=false;
+
+    public void deconnecte() {
+        this.connecte = false;
         this.nomjMenu.setText(null);
     }
-    public void majConnexion(){
+
+    public void majConnexion() {
         deconnexionMenuItem.setEnabled(this.connecte);
         connexionMenuItem.setEnabled(!this.connecte);
         jButtonMesInfos.setVisible(this.connecte);
         jButtonMenuCV.setVisible(this.connecte);
+        if (info != null) {
+//            jButtonMenuPosition.setText(info.getRole());
+            if (info.getRole().equals("directeur") || info.getRole().equals("responsable")) {
+                jButtonMenuPosition.setVisible(this.connecte);
+            }
+        } else {
+            jButtonMenuPosition.setVisible(false);
+        }
     }
-    
-    /**
-     * @param args the command line arguments
-     */
+        /**
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -249,6 +274,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JButton jButtonMenuCV;
+    private javax.swing.JButton jButtonMenuPosition;
     private javax.swing.JButton jButtonMesInfos;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar nomMenuBar;
