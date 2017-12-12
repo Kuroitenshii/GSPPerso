@@ -11,7 +11,7 @@ package appli_etudiants;
  */
 public class Responsable extends Personne{
     
-    public Responsable(Integer id, String nom, String prenom, String courriel, String date_embauche, String rue, String cp, String ville, String role, String position, String date_naissance, Integer telPro, Integer telPerso) {
+    public Responsable(Integer id, String nom, String prenom, String courriel, String date_embauche, String rue, String cp, String ville, String role, String position, String date_naissance, String telPro, String telPerso) {
         super(id, nom, prenom, courriel, date_embauche, rue, cp, ville, role, position, date_naissance, telPro, telPerso);
     }
     

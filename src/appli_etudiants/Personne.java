@@ -20,10 +20,10 @@ public class Personne {
     private String role;
     private String position;
     private String date_naissance;
-    private Integer telPro;
-    private Integer telPerso;
+    private String telPro;
+    private String telPerso;
 
-    public Personne(Integer id, String nom, String prenom, String courriel, String date_embauche, String rue, String cp, String ville, String role, String position, String date_naissance, Integer telPro, Integer telPerso) {
+    public Personne(Integer id, String nom, String prenom, String courriel, String date_embauche, String rue, String cp, String ville, String role, String position, String date_naissance, String telPro, String telPerso) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -47,19 +47,19 @@ public class Personne {
         this.id = id;
     }
 
-    public Integer getTelPro() {
+    public String getTelPro() {
         return telPro;
     }
 
-    public void setTelPro(Integer telPro) {
+    public void setTelPro(String telPro) {
         this.telPro = telPro;
     }
 
-    public Integer getTelPerso() {
+    public String getTelPerso() {
         return telPerso;
     }
 
-    public void setTelPerso(Integer telPerso) {
+    public void setTelPerso(String telPerso) {
         this.telPerso = telPerso;
     }
 

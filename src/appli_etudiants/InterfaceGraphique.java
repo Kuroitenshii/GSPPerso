@@ -4,6 +4,10 @@
  */
 package appli_etudiants;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,6 +30,9 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     private MesInfos fenMesInfos;
     private MenuCV fenmenuCV;
     private ChangePosition fenPos;
+    private PromoRetro fenGrade;
+    private NewEmploye fenNew;
+    private AddPhoto fenPhoto;
 
     /**
      * constructeur : Creates new form InterfaceGraphique
@@ -55,8 +62,12 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         desktopPane = new javax.swing.JDesktopPane();
         jButtonMesInfos = new javax.swing.JButton();
-        jButtonMenuPosition = new javax.swing.JButton();
+        jButtonExporter = new javax.swing.JButton();
         jButtonMenuCV = new javax.swing.JButton();
+        jButtonPhoto = new javax.swing.JButton();
+        jButtonMenuPosition = new javax.swing.JButton();
+        jButtonNewEmploye = new javax.swing.JButton();
+        jButtonGrade = new javax.swing.JButton();
         nomMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         connexionMenuItem = new javax.swing.JMenuItem();
@@ -81,17 +92,17 @@ public class InterfaceGraphique extends javax.swing.JFrame {
             }
         });
         desktopPane.add(jButtonMesInfos);
-        jButtonMesInfos.setBounds(140, 10, 150, 30);
+        jButtonMesInfos.setBounds(20, 20, 170, 40);
 
-        jButtonMenuPosition.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButtonMenuPosition.setText("Modifier Position");
-        jButtonMenuPosition.addActionListener(new java.awt.event.ActionListener() {
+        jButtonExporter.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonExporter.setText("Exporter");
+        jButtonExporter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMenuPositionActionPerformed(evt);
+                jButtonExporterActionPerformed(evt);
             }
         });
-        desktopPane.add(jButtonMenuPosition);
-        jButtonMenuPosition.setBounds(120, 100, 200, 40);
+        desktopPane.add(jButtonExporter);
+        jButtonExporter.setBounds(480, 20, 200, 40);
 
         jButtonMenuCV.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButtonMenuCV.setText("Modifier mon CV");
@@ -101,7 +112,47 @@ public class InterfaceGraphique extends javax.swing.JFrame {
             }
         });
         desktopPane.add(jButtonMenuCV);
-        jButtonMenuCV.setBounds(120, 50, 200, 40);
+        jButtonMenuCV.setBounds(240, 20, 200, 40);
+
+        jButtonPhoto.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonPhoto.setText("Modifier Photo");
+        jButtonPhoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPhotoActionPerformed(evt);
+            }
+        });
+        desktopPane.add(jButtonPhoto);
+        jButtonPhoto.setBounds(100, 70, 200, 40);
+
+        jButtonMenuPosition.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonMenuPosition.setText("Modifier Position");
+        jButtonMenuPosition.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMenuPositionActionPerformed(evt);
+            }
+        });
+        desktopPane.add(jButtonMenuPosition);
+        jButtonMenuPosition.setBounds(360, 70, 200, 40);
+
+        jButtonNewEmploye.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonNewEmploye.setText("Créer employé");
+        jButtonNewEmploye.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNewEmployeActionPerformed(evt);
+            }
+        });
+        desktopPane.add(jButtonNewEmploye);
+        jButtonNewEmploye.setBounds(20, 130, 170, 40);
+
+        jButtonGrade.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonGrade.setText("promotion / rétrogradation");
+        jButtonGrade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGradeActionPerformed(evt);
+            }
+        });
+        desktopPane.add(jButtonGrade);
+        jButtonGrade.setBounds(240, 130, 280, 40);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("Employé");
@@ -155,11 +206,11 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(desktopPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+            .add(desktopPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(desktopPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+            .add(desktopPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
         );
 
         pack();
@@ -202,6 +253,33 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         fenPos = new ChangePosition(this, true, info);
         this.fenPos.setVisible(true);
     }//GEN-LAST:event_jButtonMenuPositionActionPerformed
+
+    private void jButtonNewEmployeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewEmployeActionPerformed
+        fenNew = new NewEmploye(this, true);
+        this.fenNew.setVisible(true);
+    }//GEN-LAST:event_jButtonNewEmployeActionPerformed
+
+    private void jButtonGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGradeActionPerformed
+        fenGrade = new PromoRetro(this, true, info);
+        this.fenGrade.setVisible(true);
+    }//GEN-LAST:event_jButtonGradeActionPerformed
+
+    private void jButtonExporterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExporterActionPerformed
+        C01E02_RickAstley export = new C01E02_RickAstley(info);
+        String[] tab = null;
+        try {
+            C01E02_RickAstley.main(tab, info);
+        } catch (IOException ex) {
+            Logger.getLogger(InterfaceGraphique.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(InterfaceGraphique.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonExporterActionPerformed
+
+    private void jButtonPhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPhotoActionPerformed
+        fenPhoto = new AddPhoto(this, true,info);
+        this.fenPhoto.setVisible(true);
+    }//GEN-LAST:event_jButtonPhotoActionPerformed
     public void connecte(String nom, String prenom, Personne gens) {
         //maj de l'etat de la connexion
         this.connecte = true;
@@ -222,18 +300,31 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         connexionMenuItem.setEnabled(!this.connecte);
         jButtonMesInfos.setVisible(this.connecte);
         jButtonMenuCV.setVisible(this.connecte);
+        jButtonExporter.setVisible(this.connecte);
+        jButtonPhoto.setVisible(connecte);
         if (info != null) {
 //            jButtonMenuPosition.setText(info.getRole());
-            if (info.getRole().equals("directeur") || info.getRole().equals("responsable")) {
+            if (info.getRole().equals("responsable")) {
                 jButtonMenuPosition.setVisible(this.connecte);
+            } else if (info.getRole().equals("directeur")) {
+                jButtonMenuPosition.setVisible(this.connecte);
+                jButtonNewEmploye.setVisible(this.connecte);
+                jButtonGrade.setVisible(this.connecte);
+            } else {
+                jButtonMenuPosition.setVisible(false);
+                jButtonNewEmploye.setVisible(false);
+                jButtonGrade.setVisible(false);
             }
         } else {
             jButtonMenuPosition.setVisible(false);
+            jButtonNewEmploye.setVisible(false);
+            jButtonGrade.setVisible(false);
         }
     }
-        /**
-         * @param args the command line arguments
-         */
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -273,9 +364,13 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     private javax.swing.JMenuItem deconnexionMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JButton jButtonExporter;
+    private javax.swing.JButton jButtonGrade;
     private javax.swing.JButton jButtonMenuCV;
     private javax.swing.JButton jButtonMenuPosition;
     private javax.swing.JButton jButtonMesInfos;
+    private javax.swing.JButton jButtonNewEmploye;
+    private javax.swing.JButton jButtonPhoto;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar nomMenuBar;
     private javax.swing.JMenu nomjMenu;

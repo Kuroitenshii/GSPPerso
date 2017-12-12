@@ -106,6 +106,7 @@ public class AddPhoto extends javax.swing.JDialog {
             istreamImage = new FileInputStream(monImage);
             try {
                 Connection connect = Connect.getConnect();
+                Connect.requete2("delete * from cv_photo where id_utilisateur="+info.getId());
                 PreparedStatement ps = connect.prepareStatement("insert into cv_photo (id_utilisateur, photo) values(?,?)");
                 try {
                     ps.setInt(1, info.getId());

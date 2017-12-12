@@ -36,8 +36,8 @@ public class Connexion extends javax.swing.JDialog {
         this.setModal(true);
         //on stocke dans this.fenetre la référence vers la fenetre parente
         this.fenetre=(InterfaceGraphique)parent;
-        this.jTextFieldIdentifiant.setText("toto");
-        this.jPassMDP.setText("0");
+        this.jTextFieldIdentifiant.setText("Michel");
+        this.jPassMDP.setText("Martin");
     }
 
     /**
@@ -171,8 +171,8 @@ public class Connexion extends javax.swing.JDialog {
                     String role = lignesRetournees.getString("role");
                     String position = lignesRetournees.getString("categorie");
                     String naissance = lignesRetournees.getString("annee_naissance");
-                    Integer tel1 = lignesRetournees.getInt("tel_personnel");
-                    Integer tel2 = lignesRetournees.getInt("tel_professionnel");
+                    String tel1 = lignesRetournees.getString("tel_personnel");
+                    String tel2 = lignesRetournees.getString("tel_professionnel");
                     
                     
                     //Modifications de la Mission 2 à placer ici

@@ -53,7 +53,11 @@ public class MesInfos extends javax.swing.JDialog {
                 Calendar date = new GregorianCalendar(Locale.FRANCE);
                 Integer annee = date.get(Calendar.YEAR);
                 Integer ancien = annee - Integer.parseInt(info.getDate_embauche());
-                jLabelSalaire.setText(String.valueOf(ancien));
+                Double salaireactuel = salaire.getDouble("salaire");
+                for(int i =0;i<ancien;i++){
+                    salaireactuel = salaireactuel * 1.03;
+                }
+                jLabelSalaire.setText(String.valueOf(salaireactuel));
             }
         } catch (SQLException ex) {
             Logger.getLogger(MesInfos.class.getName()).log(Level.SEVERE, null, ex);
